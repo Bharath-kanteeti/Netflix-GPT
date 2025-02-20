@@ -9,6 +9,7 @@
       - Login Button
     - Login page
     - SignUp Page
+      - Validation of credintials
 
 # Features to build
  - Home Page

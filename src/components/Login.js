@@ -20,18 +20,18 @@ const Login = () => {
             !isSignInForm && <input 
             type = 'text' 
             placeholder = 'User name' 
-            className='text-black w-full p-2 m-2 bg-transparent border border-white rounded-sm'
+            className='text-black w-full p-2 m-2 bg-zinc-800 bg-opacity-60 border border-white rounded-sm'
           />
           }
           <input 
             type = 'text' 
             placeholder = 'Email or Phone number' 
-            className='text-black w-full p-2 m-2 bg-transparent border border-white rounded-sm'
+            className='text-black w-full p-2 m-2 bg-zinc-800 bg-opacity-60 border border-white rounded-sm'
           />
           <input 
             type = 'password' 
             placeholder = 'Password' 
-            className='text-black p-2 m-2 w-full bg-transparent border border-white rounded-sm'
+            className='text-black p-2 m-2 w-full bg-zinc-800 bg-opacity-60 border border-white rounded-sm'
           />
           <button 
             className='bg-red-600 rounded-sm p-2 m-2 w-full'>
