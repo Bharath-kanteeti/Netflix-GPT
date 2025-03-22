@@ -1,17 +1,35 @@
-import React from 'react'
-import { signOut } from "firebase/auth";
+import React, { useEffect } from 'react'
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/fireBase';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, removeUser } from '../utils/userSlice';
 
 const Header = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const { uid, email, displayName } = user;
+          dispatch(addUser({uid: uid, email: email, displayName: displayName}))
+          navigate('/browse')
+        } else {
+          dispatch(removeUser())
+          navigate('/')
+        }
+      });
+      // Cleanup subscription on unmount of header component
+      return () => unsubscribe();
+    }, [])    
+  // here we are calling the api call only once that is when the body component is rendered after that for every change in the user state the onAuthStateChanged will be called and the user will be added or removed from the store
+  // we can call the onAuthStateChanged in the Login Component or in the App component but it is better to call it in the Body component as it is the parent component of all the other components
+
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate('/')  
-    })
+      .then(() => {})
       .catch((error) => {
         navigate('/error')
     });

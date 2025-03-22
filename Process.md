@@ -36,6 +36,10 @@
  - setting up header component after successful logging in
     - Implement signout feature
     - fixing the bug i.e, navigating into browse page before getting store updated after updating user info using updateProfile api call
+    - Fixing another bug that if a user is loged in and he'll redirect to browse pafe if in href link if we remove browse it will automatically redirect to login page
+      and if user in login page if they add browse to the link they wll direct to browse page without any credential verification
+         - so need to change the navigate control and it should be bind with auth user i.e, acc to the onAuthStateChangedthe navigation should be done. so we'll atach the navigation part in header along with onAuthStateChanged api call
+ - Unsubscribing onAuthStateChanged when the header component is unmounted
 
 # Features to build
  - Home Page
@@ -71,3 +75,10 @@
  - select hoisting after initializing
  - build the project - "npm run build"
  - deploy the project - "firebase deploy"
+
+
+
+# Important
+
+- useNavigate hook is only used in RouterProvider i.e, in our case in appRouter
+    - if we use navigate and RouterProvider at same level we encounter with an error as the navigate function is unaware with routing links so we should use navigate in only RouterProvider or children components of it their children components to get off eith error
